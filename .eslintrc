@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "eslint:recommended",
+    "standard",
+    "react-app"
+  ],
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "arrowParens": "always",
+        "trailingComma": "es5",
+        "jsxBracketSameLine": true
+      },
+      { "usePrettierrc": false }
+    ]
+  }
+}
