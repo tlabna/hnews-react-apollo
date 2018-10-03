@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.16",
-    "graphql": "^14.0.2",
+    "graphql": "^0.13.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.3"
+    "react-scripts": "^1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +23,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^9.0.0",
     "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-react-app": "^3.0.3",
