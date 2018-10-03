@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -17,6 +18,10 @@ export default class CreateLink extends Component {
   state = {
     description: '',
     url: '',
+  }
+
+  static propTypes = {
+    history: PropTypes.object.isRequired,
   }
 
   render() {
@@ -40,7 +45,10 @@ export default class CreateLink extends Component {
             placeholder="The URL for the link"
           />
         </div>
-        <Mutation mutation={POST_MUTATION} variables={{ description, url }}>
+        <Mutation
+          mutation={POST_MUTATION}
+          variables={{ description, url }}
+          onCompleted={() => this.props.history.push('/')}>
           {(postMutation) => <button onClick={postMutation}>Submit</button>}
         </Mutation>
       </div>
