@@ -22,6 +22,7 @@
         "asyncArrow": "always"
       }
     ],
+    "comma-dangle": [2, "only-multiline"],
     "prettier/prettier": [
       "error",
       {
