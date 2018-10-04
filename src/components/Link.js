@@ -1,19 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { timeDifferenceForDate } from '../utils'
+import { AUTH_TOKEN } from '../constants'
 
-Link.propTypes = {
-  link: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  }).isRequired,
-}
+export default class Link extends Component {
+  static propTypes = {
+    link: PropTypes.shape({
+      description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      votes: PropTypes.array.isRequired,
+      postedBy: PropTypes.object,
+      createdAt: PropTypes.string.isRequired,
+    }).isRequired,
+    index: PropTypes.number.isRequired,
+  }
 
-export default function Link(props) {
-  return (
-    <div>
-      <div>
-        {props.link.description} ({props.link.url})
+  render() {
+    const authToken = localStorage.getItem(AUTH_TOKEN)
+
+    return (
+      <div className="flex mt2 items-start">
+        <div className="flex items-center">
+          <span className="gray">{this.props.index + 1}.</span>
+          {authToken && (
+            <div className="ml1 gray f11" onClick={() => this._voteForLink()}>
+              ▲
+            </div>
+          )}
+        </div>
+        <div className="ml1">
+          <div>
+            {this.props.link.description} ({this.props.link.url})
+          </div>
+          <div className="f6 lh-copy gray">
+            {this.props.link.votes.length} votes | by{' '}
+            {this.props.link.postedBy
+              ? this.props.link.postedBy.name
+              : 'Unknown'}{' '}
+            {timeDifferenceForDate(this.props.link.createdAt)}
+          </div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
