@@ -35,6 +35,7 @@ export default class Link extends Component {
       id: PropTypes.string.isRequired,
     }).isRequired,
     index: PropTypes.number.isRequired,
+    updateStoreAfterVote: PropTypes.func.isRequired,
   }
 
   render() {
@@ -47,7 +48,13 @@ export default class Link extends Component {
           {authToken && (
             <Mutation
               mutation={VOTE_MUTATION}
-              variables={{ linkId: this.props.link.id }}>
+              variables={{ linkId: this.props.link.id }}
+              // update will be called directly after the server returned the response.
+              // It receives the payload of the mutation (data) and the current cache
+              // (store) as arguments.
+              update={(store, { data: { vote } }) =>
+                this.props.updateStoreAfterVote(store, vote, this.props.link.id)
+              }>
               {(voteMutation) => (
                 <div className="ml1 gray f11" onClick={voteMutation}>
                   ▲
